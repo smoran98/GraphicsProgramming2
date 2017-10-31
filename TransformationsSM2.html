@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+ 
+	 <head>
+	 
+		 <title>Transformations</title>
+		 
+			 <meta charset="UTF-8">
+			 
+			 <style type="text/css">
+			       canvas {
+					border: 1px solid; 
+				  }
+	  </style>
+	 </head>
+			 
+	<body>
+		<canvas id="transformcan" width="500" height="500" style="border:1px solid"></canvas>
+
+	 
+		 <script type="text/javascript" >
+		 	var canvas = document.getElementById("transformcan");
+			var ctx = canvas.getContext('2d');
+			
+			// PART 6
+					
+			
+			function drawPacman(){
+				ctx.beginPath();
+				ctx.arc(100, 100, 50, 0.25 * Math.PI, 1.25 * Math.PI, false);
+				ctx.fillStyle = "rgb(255, 255, 0)";
+				ctx.fill();
+				ctx.beginPath();
+				ctx.arc(100, 100, 50, 0.75 * Math.PI, 1.75 * Math.PI, false);
+				ctx.fill();
+				ctx.beginPath();
+				ctx.arc(100, 75, 10, 0, 2 * Math.PI, false);
+				ctx.fillStyle = "rgb(0,255, 0)";
+				ctx.fill();
+			}
+			
+			
+			function clear() {
+			 ctx.save();
+			 ctx.setTransform(1, 0, 0, 1, 0, 0);
+			 ctx.clearRect(0, 0, canvas.width, canvas.height);
+			 ctx.restore();
+			 
+			}
+			
+			
+			// The vertical location of Pacman.
+			var y = 10;
+			// A function to repeat every time the animation loops.
+			function repeatme() {
+			// Draw the ball (stroked, not filled).
+			drawPacman();
+			
+			var nosteps = 0;
+			ctx.translate(30,30);
+			
+			window.requestAnimationFrame(repeatme);
+			}
+		  	 
+
+			// Get the animation going.
+			repeatme();
+
+		 </script>
+ 
+	</body>
+
+ </html>
